@@ -20,6 +20,6 @@ jobs:
         run: |
           git config --global user.email "bcpc07laichau@gmail.com"
           git config --global user.name "bcpc07laichau"
-          git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/pc071/pccc.git
+          git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/pc071/bdpc.git
           git push gitlab main --force
           git push --tags gitlab --force
