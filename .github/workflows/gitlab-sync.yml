@@ -3,7 +3,7 @@ name: Mirror to GitLab
 on:
   push:
     branches:
-      - main # Thay bằng nhánh bạn muốn sync, ví dụ: master
+      - main
 
 jobs:
   mirror:
@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Mirror repository to GitLab
         env:
@@ -19,4 +21,5 @@ jobs:
           git config --global user.email "bcpc07laichau@gmail.com"
           git config --global user.name "bcpc07laichau"
           git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/pc071/pccc.git
-          git push --mirror gitlab
+          git push gitlab main --force
+          git push --tags gitlab --force
