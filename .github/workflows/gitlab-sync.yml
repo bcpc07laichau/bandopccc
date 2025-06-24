@@ -1,0 +1,22 @@
+name: Mirror to GitLab
+
+on:
+  push:
+    branches:
+      - main # Thay bằng nhánh bạn muốn sync, ví dụ: master
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Mirror repository to GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          git config --global user.email "bcpc07laichau@gmail.com"
+          git config --global user.name "bcpc07laichau"
+          git remote add gitlab https://${GITLAB_TOKEN}@gitlab.com/pc071/pccc.git
+          git push --mirror gitlab
